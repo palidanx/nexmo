@@ -91,8 +91,6 @@ module Nexmo
       get('/search/messages', Hash === params ? params : {:ids => Array(params)})
     end
 
-    private
-
     def get(path, params = {})
       http_response = if oauth_access_token
         oauth_access_token.get(request_uri(path, params))
@@ -112,6 +110,9 @@ module Nexmo
 
       decode(http_response)
     end
+    private
+
+   
 
     def decode(http_response)
       response = Response.new(http_response, :json => @json)
